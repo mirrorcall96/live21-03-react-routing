@@ -1,6 +1,9 @@
+import { useParams } from "react-router";
 import { Button, ButtonsWrapper } from "./styles";
+import { Link } from "react-router-dom";
 
-const InstructorProfile = ({ instructors, instructorSlug, goTo }) => {
+const InstructorProfile = ({ instructors, goTo }) => {
+  let instructorSlug=useParams().instructorSlug;
   const instructor = instructors.find(
     (instructor) => instructor.slug === instructorSlug
   );
@@ -18,12 +21,14 @@ const InstructorProfile = ({ instructors, instructorSlug, goTo }) => {
       <p>{description}</p>
 
       <ButtonsWrapper>
-        <div onClick={() => goTo("/")}>
+        <Link to="/">
           <Button color="tomato" textColor="white">
             Go back home
           </Button>
-        </div>
+        </Link>
+        <Link>
         <Button onClick={goToGitHub}>Go to GitHub</Button>
+        </Link>
       </ButtonsWrapper>
     </>
   );
